@@ -12,10 +12,10 @@
       "label": "Packages",
       "submenu": [
         {
-          "label": "quick-fold",
+          "label": "Quick Fold",
           "submenu": [
             {
-              "label": "Fold Next",
+              "label": "Fold next foldable line",
               "command": "quick-fold:fold-next"
             }
           ]
