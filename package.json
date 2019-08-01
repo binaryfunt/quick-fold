@@ -1,0 +1,20 @@
+{
+  "name": "quick-fold",
+  "main": "./lib/quick-fold",
+  "version": "0.0.0",
+  "description": "Quickly fold the next foldable line in Atom",
+  "keywords": [],
+  "activationCommands": {
+    "atom-workspace": "quick-fold:fold-next"
+  },
+  "repository": "https://github.com/binaryfunt/quick-fold",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/binaryfunt/quick-fold/issues"
+  },
+  "homepage": "https://github.com/binaryfunt/quick-fold"
+}

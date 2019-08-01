@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Fold next foldable line",
+        "command": "quick-fold:fold-next"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "quick-fold",
+          "submenu": [
+            {
+              "label": "Fold Next",
+              "command": "quick-fold:fold-next"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
