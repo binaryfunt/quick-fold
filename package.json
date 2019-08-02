@@ -3,7 +3,11 @@
   "main": "./lib/quick-fold",
   "version": "0.0.0",
   "description": "Quickly fold the next foldable line in Atom",
-  "keywords": [],
+  "keywords": [
+    "productivity",
+    "fold",
+    "shortcut"
+  ],
   "activationCommands": {
     "atom-workspace": "quick-fold:fold-next"
   },
