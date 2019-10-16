@@ -2,72 +2,39 @@
 
 import QuickFold from '../lib/quick-fold';
 
-// Use the command `window:run-package-specs` (cmd-alt-ctrl-p) to run specs.
-//
-// To run a specific `it` or `describe` block add an `f` to the front (e.g. `fit`
-// or `fdescribe`). Remove the `f` to unfocus the block.
+describe('QuickFold package', () => {
 
-describe('QuickFold', () => {
-  let workspaceElement, activationPromise;
+    let editor, editorView, activationPromise;
 
-  beforeEach(() => {
-    workspaceElement = atom.views.getView(atom.workspace);
-    activationPromise = atom.packages.activatePackage('quick-fold');
-  });
+    beforeEach(async () => {
+        await atom.packages.activatePackage('language-javascript');
+        await atom.workspace.open('sample.js');
 
-  describe('when the quick-fold:toggle event is triggered', () => {
-    it('hides and shows the modal panel', () => {
-      // Before the activation event the view is not on the DOM, and no panel
-      // has been created
-      expect(workspaceElement.querySelector('.quick-fold')).not.toExist();
-
-      // This is an activation event, triggering it will cause the package to be
-      // activated.
-      atom.commands.dispatch(workspaceElement, 'quick-fold:toggle');
-
-      waitsForPromise(() => {
-        return activationPromise;
-      });
-
-      runs(() => {
-        expect(workspaceElement.querySelector('.quick-fold')).toExist();
-
-        let quickFoldElement = workspaceElement.querySelector('.quick-fold');
-        expect(quickFoldElement).toExist();
-
-        let quickFoldPanel = atom.workspace.panelForItem(quickFoldElement);
-        expect(quickFoldPanel.isVisible()).toBe(true);
-        atom.commands.dispatch(workspaceElement, 'quick-fold:toggle');
-        expect(quickFoldPanel.isVisible()).toBe(false);
-      });
+        editor = atom.workspace.getActiveTextEditor();
+        editorView = atom.views.getView(editor);
     });
 
-    it('hides and shows the view', () => {
-      // This test shows you an integration test testing at the view level.
-
-      // Attaching the workspaceElement to the DOM is required to allow the
-      // `toBeVisible()` matchers to work. Anything testing visibility or focus
-      // requires that the workspaceElement is on the DOM. Tests that attach the
-      // workspaceElement to the DOM are generally slower than those off DOM.
-      jasmine.attachToDOM(workspaceElement);
-
-      expect(workspaceElement.querySelector('.quick-fold')).not.toExist();
-
-      // This is an activation event, triggering it causes the package to be
-      // activated.
-      atom.commands.dispatch(workspaceElement, 'quick-fold:toggle');
-
-      waitsForPromise(() => {
-        return activationPromise;
-      });
-
-      runs(() => {
-        // Now we can test for view visibility
-        let quickFoldElement = workspaceElement.querySelector('.quick-fold');
-        expect(quickFoldElement).toBeVisible();
-        atom.commands.dispatch(workspaceElement, 'quick-fold:toggle');
-        expect(quickFoldElement).not.toBeVisible();
-      });
+    describe('when the specs are run', () => {
+        it('opens the sample file', () => {
+            expect(!editor.isEmpty()).toBe(true);
+        });
     });
-  });
+
+    describe('when the quick-fold:fold-next event is triggered', () => {
+        beforeEach(async () => {
+            atom.commands.dispatch(editorView, 'quick-fold:fold-next');
+            await atom.packages.activatePackage('quick-fold');
+        });
+
+        it('activates the package', () => {
+            atom.commands.dispatch(editorView, 'quick-fold:fold-next');
+            expect(atom.packages.isPackageActive('quick-fold')).toBe(true);
+        });
+
+        it('moves the cursor to a different line number', () => {
+            atom.commands.dispatch(editorView, 'quick-fold:fold-next');
+            console.log(atom.packages.isPackageActive('quick-fold'));
+            expect(editor.getCursorScreenPosition().row).not.toBe(0);
+        });
+    });
 });
