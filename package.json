@@ -9,7 +9,7 @@
     "shortcut"
   ],
   "activationCommands": {
-    "atom-workspace": "quick-fold:fold-next"
+    "atom-text-editor": "quick-fold:fold-next"
   },
   "repository": "https://github.com/binaryfunt/quick-fold",
   "license": "MIT",
