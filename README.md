@@ -1,5 +1,7 @@
 # Quick Fold
 
+[![Build Status](https://travis-ci.com/binaryfunt/quick-fold.svg?branch=master)](https://travis-ci.com/binaryfunt/quick-fold)
+
 Press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>f</kbd> to fold the next foldable line in Atom. Useful for quickly folding many function declarations, for example.
 
 ![Demo](demo.gif)
